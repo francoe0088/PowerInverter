@@ -1,0 +1,18 @@
+data:
+  #path: "./data/test/processed/dataset_ok/data_2024-11_20000sn_19999_20241213-060007.parquet"
+  #path: "./ok_data/data_2024-09_20000sn_999_20241216-095713.parquet"
+  #path: "/home/franco/power/inverter1/inverter/code_v6/data/test/tp_ng/"
+  #path: "/home/franco/power/inverter1/inverter/code_v6/data/test/TP3_test/"
+  #path: "/home/franco/power/inverter1/inverter/code_v6/data/test/tp_ng_T12"
+  #path: "/home/franco/power/inverter1/inverter/code_v6/data/test/T12_test"
+  #path: "/home/franco/power/inverter1/inverter/code_v6/data/test/T4_test"
+  path: "/home/franco/power/inverter1/inverter/code_v6/data/test/tg_ng_T4"
+model:
+  path:
+    seven_day : "./output/saved_models/7_7/"
+    fifiteen_day : "./output/saved_models/15_30/"
+
+
+
+
+

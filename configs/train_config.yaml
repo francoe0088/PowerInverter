@@ -1,0 +1,114 @@
+# config.yaml
+
+columns:
+  - "temperature"
+  - "vpv1"
+  - "vpv2"
+  - "vpv3"
+  - "vpv4"
+  - "vpv5"
+  - "vpv6"
+  - "vpv7"
+  - "vpv8"
+  - "vpv9"
+  - "vpv10"
+  - "vpv11"
+  - "vpv12"
+  - "vpv13"
+  - "vpv14"
+  - "vpv15"
+  - "vpv16"
+  - "vpv17"
+  - "vpv18"
+  - "vpv19"
+  - "vpv20"
+  - "vpv21"
+  - "vpv22"
+  - "vpv23"
+  - "vpv24"
+  - "vpv25"
+  - "vpv26"
+  - "vpv27"
+  - "vpv28"
+  - "vpv29"
+  - "vpv30"
+  - "ipv1"
+  - "ipv2"
+  - "ipv3"
+  - "ipv4"
+  - "ipv5"
+  - "ipv6"
+  - "ipv7"
+  - "ipv8"
+  - "ipv9"
+  - "ipv10"
+  - "ipv11"
+  - "ipv12"
+  - "ipv13"
+  - "ipv14"
+  - "ipv15"
+  - "ipv16"
+  - "ipv17"
+  - "ipv18"
+  - "ipv19"
+  - "ipv20"
+  - "ipv21"
+  - "ipv22"
+  - "ipv23"
+  - "ipv24"
+  - "ipv25"
+  - "ipv26"
+  - "ipv27"
+  - "ipv28"
+  - "ipv29"
+  - "ipv30"
+  - "vac1"
+  - "vac2"
+  - "vac3"
+  - "iac1"
+  - "iac2"
+  - "iac3"
+  - "fac1"
+  - "fac2"
+  - "pac"
+  - "eday"
+  - "etotal"
+  - "outputpowerratio"
+  - "activepower"
+  - "reactivepower"
+  - "inspectingpower"
+  - "powerfactor"
+  - "createtime"
+  - "sn"
+  - "ttotal"
+  - "switchstatus"
+  - "errorcode"
+model:
+  name: "xgb_model"
+
+data:
+  ok:
+    #path: "/home/franco/power/inverter1/inverter/code_v6/output_selected/selected_all_TP3_train200.parquet"
+    #path: "/home/franco/power/inverter1/inverter/code_v6/output_selected/selected_all_TP12_train200.parquet"
+    path: "/home/franco/power/inverter1/inverter/code_v6/output_selected/selected_all_TP4_train300.parquet"
+  ng:
+    #path: "/home/franco/power/inverter1/inverter/code_v6/data/train/ng/model_TP3_train.parquet"
+    path: "/home/franco/power/inverter1/inverter/code_v6/data/train/ng/model_TP4_train.parquet"
+
+labels:
+  ok: 0
+  ng: 1
+
+test_size: 0.01
+
+tsfresh:
+  ok_filename: "train2_2_9_feature_ok_7_day.parquet"
+  ng_filename: "train2_2_9_feature_ng_7_day.parquet"
+
+pre_days:
+  ok: 0
+  ng: 7
+
+need_days:
+  ok: 7
+  ng: 7
