@@ -1,97 +1,125 @@
-# INVERTER_TRINAPOWER-MASTER 项目文档
+# INVERTER_TRINAPOWER-MASTER
 
-## 项目概述
-本项目是一个针对逆变器（INVERTER）数据的机器学习全流程工程，涵盖了从数据预处理、模型训练、模型推理到模型可解释性分析的完整链路。
+**逆變器機器學習全流程工程專案**  
+TrinaPower 逆變器運行端故障預測 + 製造端品質控制
 
----
+## 專案概述
 
-## 目录结构与文件说明
+本專案針對逆變器（INVERTER）資料，建構完整的機器學習應用鏈路，涵蓋：
 
-### 1. `utils_tools/`
-工具与辅助函数模块，提供项目通用的基础功能。
+- 資料接入與預處理
+- 特徵工程
+- 模型訓練
+- 模型儲存與版本管理
+- 模型推理 / 預測
+- 模型可解釋性分析（SHAP、特徵重要性等）
 
----
+**核心目標**  
+利用運行資料與製造資料，實現以下兩大方向：
 
-### 2. `data_preprocessing/`
-数据预处理模块，负责原始数据的清洗、特征工程等工作。
+- **一期**：運行端故障預測（提前預警即將故障的逆變器序號）
+- **二期**：製造端品質控制（剔除高風險產品，輔助出貨檢驗）
 
-| 文件名 | 功能描述 |
-|--------|----------|
-| `data_deal.py` | 核心数据处理脚本，负责数据清洗、格式转换、缺失值填充等基础操作 |
-| `feature_engineering.py` | 特征工程脚本，用于从原始数据中提取、构造模型训练所需特征，特徵存在save_json中 |
-| `Inactive_Data.py` | 处理非活跃或无效数据的脚本，用于过滤和清理低质量数据 |
-| `load_predict_columns.py` | 加载并定义模型推理时需要使用的列名或特征列表 |
-| `load_yaml.py` | 加载YAML配置文件的工具脚本，用于读取项目配置参数 |
-| `main_deal.py` | 数据预处理主脚本，整合并执行完整的数据处理流程 |
-| `reader.py` | 数据读取器，封装了从不同数据源（如数据库、文件）读取数据的统一接口 |
+最終達成降低運維成本、減少退換貨、提升系統可靠度與用戶體驗。
 
----
+逆變器負責**交直流轉換、MPPT、保護、監控**，失效率相對較高，本專案從**運行端**與**製造端**雙向切入，降低整體故障率。
 
-### 3. `model_inference/`
-模型推理模块，用于加载训练好的模型并对新数据进行预测。
+** 業務痛點與價值** 
+現況痛點
+-運維成本高、無有效預警
+-退換貨週期長、用戶體驗差
+-製造端缺乏關聯監控與預防手段
 
-| 文件名 | 功能描述 |
-|--------|----------|
-| `model_predict.py` | 模型推理主脚本，实现模型加载、数据输入、预测执行及结果输出 |
+預期價值
+-縮短維修時間、降低服務費用
+-減少逆變器退換貨成本
+-提升品牌力與智慧能源賣點
 
----
+##技術驗證亮點
+一期 - 運行端故障預測
 
-### 4. `model_interpretation/`
-模型可解释性模块，用于分析和可视化模型的决策过程。
+資料：30,000 台逆變器、60 天、2000萬+ 記錄
+模型：XGBoost / ExtraTrees / SVM 等
+結果：準確率最高可達 92%（提前 1 天）
+關鍵特徵：溫度、輸出功率、有功/無功功率、錯誤碼、電壓偏斜等
 
-| 文件名 | 功能描述 |
-|--------|----------|
-| `interpretation.py` | 模型可解释性分析脚本，通过SHAP值、特征重要性等方法解释模型预测结果 |
+二期 - 製造端品質控制
 
----
+資料：60 正常 + 61 異常逆變器，4 萬+ 製造記錄
+特徵：FFT 頻域、標準差、自相關、偏度、峰度、老化測試時間等
+卡控精度：80%+
+--------------------------------------------------------
+## 目錄結構
+INVERTER_TRINAPOWER-MASTER/
+├── data_preprocessing/           # 資料預處理
+│   ├── data_deal.py              # 清洗、缺失值、格式轉換
+│   ├── feature_engineering.py    # 特徵構造與提取
+│   ├── Inactive_Data.py          # 過濾無效/非活躍資料
+│   ├── load_predict_columns.py   # 定義推理所需欄位
+│   ├── load_yaml.py              # 讀取 yaml 配置
+│   ├── main_deal.py              # 資料處理主流程
+│   └── reader.py                 # 統一資料讀取介面
+├── model_training/               # 模型訓練
+│   ├── model_definition.py       # 模型結構定義
+│   └── model_training.py         # 訓練主腳本
+├── model_storage/                # 模型儲存與版本管理
+│   ├── get_last_file.py          # 取得最新模型/結果檔案
+│   └── storage.py                # 模型儲存、載入、版本控制
+├── model_inference/              # 模型推理
+│   └── model_predict.py          # 推理主腳本
+├── model_interpretation/         # 模型可解釋性
+│   └── interpretation.py         # SHAP / 特徵重要性分析
+├── utils_tools/                  # 通用工具函數
+├── config/                       # 配置目錄（建議）
+│   └── config.yaml
+├── README.md
+└── requirements.txt              # 依賴清單
 
-### 5. `model_storage/`
-模型存储与管理模块，负责模型文件的保存、加载和版本管理。
 
-| 文件名 | 功能描述 |
-|--------|----------|
-| `get_last_file.py` | 获取最新生成的模型文件或结果文件的工具脚本 |
-| `storage.py` | 模型存储管理脚本，实现模型的保存、加载、版本控制和路径管理 |
+## 主要模組功能一覽
 
----
+| 模組                   | 主要檔案                  | 功能說明                              |
+|------------------------|---------------------------|---------------------------------------|
+| data_preprocessing     | main_deal.py             | 完整資料處理流程                      |
+| data_preprocessing     | data_deal.py             | 基礎清洗、缺失值處理                  |
+| data_preprocessing     | feature_engineering.py   | 特徵提取與構造（存 json）             |
+| model_training         | model_training.py        | 訓練流程整合                          |
+| model_training         | model_definition.py      | 模型架構定義（XGBoost/NN 等）         |
+| model_storage          | storage.py               | 模型儲存、載入、版本管理              |
+| model_inference        | model_predict.py         | 載入最新模型進行預測                  |
+| model_interpretation   | interpretation.py        | SHAP 值、特徵重要性、可視化           |
 
-### 6. `model_training/`
-模型训练模块，定义模型结构并执行训练流程。
+## 完整執行流程
 
-| 文件名 | 功能描述 |
-|--------|----------|
-| `model_definition.py` | 模型定义脚本，包含神经网络或其他机器学习模型的结构定义 |
-| `model_training.py` | 模型训练主脚本，整合数据加载、模型编译、训练循环及评估等流程 |
+1. **資料預處理**  
+python data_preprocessing/main_deal.py   python data_preprocessing/main_deal.py
 
----
+2.模型訓練Bash
+python model_training/model_training.py
 
-## 核心流程
+3.模型儲存（訓練結束後由 storage.py 自動處理）
+python model_inference/model_predict.py
 
-1.  **数据预处理**：运行 `data_preprocessing/main_deal.py`，通过 `data_deal.py` 和 `feature_engineering.py` 等脚本完成数据清洗与特征工程。
-2.  **模型训练**：运行 `model_training/model_training.py`，使用定义好的模型结构（`model_definition.py`）对预处理后的数据进行训练。
-3.  **模型存储**：训练完成的模型通过 `model_storage/storage.py` 进行保存和管理。
-4.  **模型推理**：使用 `model_inference/model_predict.py` 加载最新模型（通过 `model_storage/get_last_file.py`），对新数据进行预测。
-5.  **可解释性分析**：通过 `model_interpretation/interpretation.py` 对模型预测结果进行分析，提升模型透明度。
+4.模型推理Bash
+python model_inference/model_predict.py
 
----
+5.可解釋性分析Bash
+python model_interpretation/interpretation.py
 
-## 环境依赖
+##環境依賴
+Python 3.8+
+pandas               >=1.5
+numpy                >=1.23
+scikit-learn         >=1.2
+xgboost              （如使用 XGBoost）
+tensorflow           或 pytorch（依模型選擇）
+shap
+pyyaml
+jupyter              （可選，用於開發與分析）
 
-> 注：请根据实际使用补充版本信息
+建議建立 requirements.txt：
+pip freeze > requirements.txt
+# 或手動維護
 
-- Python 3.8+
-- pandas
-- numpy
-- scikit-learn
-- tensorflow / pytorch (根据模型定义选择)
-- shap (用于模型可解释性)
-- pyyaml (用于配置文件读取)
-- jupyter notebook/lab (如用于交互式开发)
 
----
 
-## 注意事项
-
-1.  运行前请确保 `load_yaml.py` 正确加载了数据库连接、文件路径等配置。
-2.  模型训练和推理前，需确认 `data_preprocessing` 模块已生成符合要求的特征数据。
-3.  模型文件的存储路径由 `model_storage/storage.py` 管理，推理脚本需确保能正确访问到最新模型。
