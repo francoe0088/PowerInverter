@@ -107,15 +107,16 @@ Python 3.8+
 pandas               >=1.5
 numpy                >=1.23
 scikit-learn         >=1.2
-xgboost              （如使用 XGBoost）
-tensorflow           或 pytorch（依模型選擇）
+xgboost              
+tensorflow           
 shap
 pyyaml
 jupyter              （可選，用於開發與分析）
 
 建議建立 requirements.txt：
 pip freeze > requirements.txt
-# 或手動維護
+
+
 
 
 
