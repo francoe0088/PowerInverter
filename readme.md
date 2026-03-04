@@ -1,4 +1,4 @@
-# INVERTER_TRINAPOWER-MASTER
+# POWERINVERTER-MASTER
 
 **逆變器機器學習全流程工程專案**  
 逆變器運行端故障預測 + 製造端品質控制
@@ -120,6 +120,7 @@ jupyter              （可選，用於開發與分析）
 建議建立 requirements.txt：
 pip freeze > requirements.txt
 # 或手動維護
+
 
 
 
