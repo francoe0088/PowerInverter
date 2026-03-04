@@ -38,6 +38,7 @@
 --------------------------------------------------------
 ## 專案目錄結構
 
+```
 INVERTER_TRINAPOWER-MASTER/
 ├── 📂 data_preprocessing/          # 資料預處理模組
 │   ├── data_deal.py                # 資料清洗、缺失值處理、格式轉換
@@ -69,6 +70,7 @@ INVERTER_TRINAPOWER-MASTER/
 │
 ├── README.md                       # 本說明文件
 └── requirements.txt                # Python 依賴套件清單
+```
 
 ## 主要模組功能一覽
 
@@ -114,6 +116,7 @@ jupyter              （可選，用於開發與分析）
 建議建立 requirements.txt：
 pip freeze > requirements.txt
 # 或手動維護
+
 
 
 
