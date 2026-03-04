@@ -36,32 +36,39 @@
 -提升品牌力與智慧能源賣點
 
 --------------------------------------------------------
-## 目錄結構
-INVERTER_TRINAPOWER-MASTER/
-├── data_preprocessing/           # 資料預處理
-│   ├── data_deal.py              # 清洗、缺失值、格式轉換
-│   ├── feature_engineering.py    # 特徵構造與提取
-│   ├── Inactive_Data.py          # 過濾無效/非活躍資料
-│   ├── load_predict_columns.py   # 定義推理所需欄位
-│   ├── load_yaml.py              # 讀取 yaml 配置
-│   ├── main_deal.py              # 資料處理主流程
-│   └── reader.py                 # 統一資料讀取介面
-├── model_training/               # 模型訓練
-│   ├── model_definition.py       # 模型結構定義
-│   └── model_training.py         # 訓練主腳本
-├── model_storage/                # 模型儲存與版本管理
-│   ├── get_last_file.py          # 取得最新模型/結果檔案
-│   └── storage.py                # 模型儲存、載入、版本控制
-├── model_inference/              # 模型推理
-│   └── model_predict.py          # 推理主腳本
-├── model_interpretation/         # 模型可解釋性
-│   └── interpretation.py         # SHAP / 特徵重要性分析
-├── utils_tools/                  # 通用工具函數
-├── config/                       # 配置目錄（建議）
-│   └── config.yaml
-├── README.md
-└── requirements.txt              # 依賴清單
+## 專案目錄結構
 
+INVERTER_TRINAPOWER-MASTER/
+├── 📂 data_preprocessing/          # 資料預處理模組
+│   ├── data_deal.py                # 資料清洗、缺失值處理、格式轉換
+│   ├── feature_engineering.py      # 特徵工程與提取
+│   ├── Inactive_Data.py            # 過濾無效/非活躍資料
+│   ├── load_predict_columns.py     # 定義模型推理所需欄位
+│   ├── load_yaml.py                # 讀取 YAML 配置檔
+│   ├── main_deal.py                # 資料處理主流程腳本
+│   └── reader.py                   # 統一的資料讀取介面
+│
+├── 📂 model_training/              # 模型訓練相關
+│   ├── model_definition.py         # 模型架構定義
+│   └── model_training.py           # 訓練主腳本
+│
+├── 📂 model_storage/               # 模型儲存與版本管理
+│   ├── get_last_file.py            # 取得最新模型/結果檔案
+│   └── storage.py                  # 模型儲存、載入、版本控制邏輯
+│
+├── 📂 model_inference/             # 模型推理（預測）
+│   └── model_predict.py            # 推理主腳本
+│
+├── 📂 model_interpretation/        # 模型可解釋性分析
+│   └── interpretation.py           # SHAP 值、特徵重要性等分析
+│
+├── 📂 utils_tools/                 # 通用工具函數（helpers）
+│
+├── 📂 config/                      # 配置檔（建議放在這裡）
+│   └── config.yaml                 # 主配置文件
+│
+├── README.md                       # 本說明文件
+└── requirements.txt                # Python 依賴套件清單
 
 ## 主要模組功能一覽
 
@@ -107,6 +114,7 @@ jupyter              （可選，用於開發與分析）
 建議建立 requirements.txt：
 pip freeze > requirements.txt
 # 或手動維護
+
 
 
 
